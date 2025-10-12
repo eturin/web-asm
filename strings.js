@@ -17,6 +17,12 @@ let importObj = {
             b = new Uint8Array(mem.buffer,p,l)
             const s = new TextDecoder('utf8').decode(b)
             console.log(`${s}`)
+        },
+        len_prefix: (p) => {
+            const l = new Uint8Array(mem.buffer,p,1)[0]
+            const b = new Uint8Array(mem.buffer,p+1,l)
+            const s = new TextDecoder('utf8').decode(b)
+            console.log(`${s}`)
         }
 
     }
