@@ -46,4 +46,13 @@ const importObject = {
     start = Date.now();
     call_wasm();
     console.log(`call_wasm = ${Date.now() - start}`);
+
+    start = Date.now();
+    for(j=0; j<4000000;j++) {
+        inc()
+    }
+    for(j=0; j<4000000;j++) {
+        dec()
+    }
+    console.log(`only_js = ${Date.now() - start}`);
 })();
