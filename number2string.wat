@@ -3,13 +3,14 @@
     (import "env" "buffer" (memory 1))
 
     ;; зависываем в импортированный буфер
-    (data (i32.const 128) "0123456789abcdef")
-    (data (i32.const 245) "               0")
+    (data (i32.const 128) "0123456789abcdefghijklmnopqrstuvwxyz")
+    (data (i32.const 245) "                              0")
 
-    (func (export "num2str10") 
+    (func (export "num2strK") 
     (param $n i32) 
+    (param $k i32 )
         (local $i i32 )
-        i32.const 260
+        i32.const 275
         local.set $i
         
         (loop $continue
@@ -19,7 +20,7 @@
             ;; индекс src
             i32.const 128
             local.get $n
-            i32.const 10
+            local.get $k
             i32.rem_u           
             i32.add
             
@@ -29,7 +30,7 @@
 
             ;; n /= 10
             local.get $n
-            i32.const 10
+            local.get $k
             i32.div_u
             local.set $n
 
@@ -47,6 +48,12 @@
             br_if  $continue
         )
 
-        (call $print (i32.const 245) (i32.const 16))
+        local.get $i
+        i32.const 1
+        i32.add
+        i32.const 277       
+        local.get $i
+        i32.sub
+        call $print
     )
 )

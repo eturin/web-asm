@@ -15,7 +15,8 @@ let importObj = {
 
 (async () => {
     let obj = await WebAssembly.instantiate( new Uint8Array(bytes), importObj)
-    let num2str10 = obj.instance.exports.num2str10
+    let num2strK = obj.instance.exports.num2strK
     const n = parseInt(process.argv[2]);
-    num2str10(n)
+    const k = parseInt(process.argv[3]);
+    num2strK(n,k)
 })();
